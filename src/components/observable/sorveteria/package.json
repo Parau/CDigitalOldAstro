@@ -1,0 +1,14 @@
+{
+  "name": "5a4e3b0d0f0c7b0b",
+  "main": "5a4e3b0d0f0c7b0b@1413.js",
+  "version": "1413.0.0",
+  "homepage": "https://observablehq.com/d/5a4e3b0d0f0c7b0b",
+  "author": {
+    "name": "IA para CEOs",
+    "url": "https://observablehq.com/@ai-c-level"
+  },
+  "type": "module",
+  "peerDependencies": {
+    "@observablehq/runtime": "4 - 5"
+  }
+}
