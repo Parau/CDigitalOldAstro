@@ -7,78 +7,68 @@ import FormattedDate from '../components/FormattedDate.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, pubDate, author, updatedDate, heroImage } = Astro.props;
 ---
 
-<html lang="en">
+<html lang="pt">
 	<head>
 		<BaseHead title={title} description={description} />
-		<style>
-			main {
-				width: calc(100% - 2em);
-				max-width: 100%;
-				margin: 0;
-			}
-			.hero-image {
-				width: 100%;
-			}
-			.hero-image img {
-				display: block;
-				margin: 0 auto;
-				border-radius: 12px;
-				box-shadow: var(--box-shadow);
-			}
-			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
-			}
-			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
-				text-align: center;
-				line-height: 1;
-			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
-			}
-			.date {
-				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
-			}
-			.last-updated-on {
-				font-style: italic;
-			}
-		</style>
 	</head>
 
 	<body>
 		<Header />
 		<main>
-			<article>
-				<div class="hero-image">
-					{heroImage && <img width={1020} height={510} src={'./'+heroImage} alt="" />}
-				</div>
-				<div class="prose">
-					<div class="title">
-						<div class="date">
-							<FormattedDate date={pubDate} />
-							{
-								updatedDate && (
-									<div class="last-updated-on">
-										Last updated on <FormattedDate date={updatedDate} />
+
+			<!-- =======================
+			Inner intro START -->
+			<section>
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-9 mx-auto pt-md-5">
+							<a href="#" class="badge text-bg-danger mb-2"><i class="fas fa-circle me-2 small fw-bold"></i>Travel</a>
+							<h1 class="display-4">{title}</h1>
+							<p class="lead">{description}</p>
+							<!-- Info -->
+							<ul class="nav nav-divider align-items-center">
+								<li class="nav-item">
+									<div class="nav-link">
+										<a href="#" class="text-reset btn-link">{author}</a>
 									</div>
-								)
-							}
+								</li>
+								<li class="nav-item"><FormattedDate date={pubDate} /></li>
+								{
+									updatedDate && (
+										<li class="nav-item">
+											(<FormattedDate date={updatedDate} />)
+										</li>
+									)
+								}
+							</ul>
+							<img class="rounded mt-5" src={'./'+heroImage} alt="Image">
 						</div>
-						<h1>{title}</h1>
-						<hr />
 					</div>
-					<slot />
 				</div>
-			</article>
+			</section>
+			<!-- =======================
+			Inner intro END -->
+
+
+			<!-- =======================
+			Main START -->
+			<section class="pt-0">
+				<div class="container position-relative">
+					<div class="row">
+						<!-- Main Content START -->
+						<div class="col-lg-9 mx-auto">
+							<slot />
+
+						</div>
+						<!-- Main Content END -->
+					</div>
+				</div>
+			</section>
+			<!-- =======================
+			Main END -->
 		</main>
 		<Footer />
 	</body>
