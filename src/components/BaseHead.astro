@@ -14,10 +14,19 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
 ---
-<!-- evitar erro de memória CSS -->
-<link rel="stylesheet" href="/css/style.css" />
-<link rel="stylesheet" href="/css/color.css" />
+<base href={`${import.meta.env.BASE_URL}/`} />
+<link rel="stylesheet" type="text/css" href={`${import.meta.env.BASE_URL}/css/style.css`} />
+<link rel="stylesheet" type="text/css" href={`${import.meta.env.BASE_URL}/css/color.css`} />
+<link rel="stylesheet" type="text/css" href={`${import.meta.env.BASE_URL}/css/font-awesome/all.min.css`} />
+<link rel="stylesheet" type="text/css" href={`${import.meta.env.BASE_URL}/css/bootstrap-icons.min.css`} />
 
+<!-- Favicon 
+<link rel="shortcut icon" href="assets/images/favicon.ico">
+-->
+
+<!-- Google Font -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&family=Rubik:wght@400;500;700&display=swap">
 
 <!-- Global Metadata -->
 <meta charset="utf-8" />
@@ -25,9 +34,10 @@ const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <meta name="generator" content={Astro.generator} />
 
-<!-- Font preloads -->
+<!-- Font preloads 
 <link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin />
 <link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin />
+-->
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
