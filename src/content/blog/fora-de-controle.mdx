@@ -1,0 +1,118 @@
+---
+title: 'Alta ansiedade: a IA está fora de controle'
+description: 'Será que estamos confiando em uma IA que nem seus próprios criadores conseguem entender? Descubra por que o futuro da inteligência artificial pode ser mais enigmático e inquietante do que parece.'
+pubDate: 'Aug 16 2024'
+author: 'Parahuari'
+heroImage: '/blog/fora-de-controle/thumb.png'
+tags: ['IA']
+---
+import CapitalLetter from '../../components/CapitalLetter.astro';
+import Imagem from '../../components/Imagem.astro';
+import Parau from '../../components/Parau.astro';
+
+<CapitalLetter letter='A' />o ler os jornais e navegar pelas redes sociais, deparei-me com opiniões divergentes a respeito das implicações da evolução da tecnologia de inteligência artificial (IA). Alguns argumentam que os avanços conquistados estão nos conduzindo à extinção do ser humano, enquanto outros sustentam que tal cenário jamais se concretizará ou, pelo menos, estamos distantes de alcançá-lo. Trata-se de um debate complexo que reflete a necessidade de um diálogo informado e cauteloso sobre o futuro da IA e seu impacto na sociedade.
+
+Contudo, o foco deste texto não é debater tais opiniões divergentes, mas sim explorar uma das razões que leva a previsões tão catastróficas sobre a evolução da IA: a falta de clareza e transparência no funcionamento dos sistemas baseados em "aprendizado profundo". 
+
+Observe o texto abaixo. Ele corresponde a primeira frase presente no paper [divulgado em maio deste ano pela OpenAI](https://openaipublic.blob.core.windows.net/neuron-explainer/paper/index.html), a instituição responsável pelo desenvolvimento do ChatGPT.
+
+<div class="bg-light my-4 p-3 p-md-4">
+<blockquote class="blockquote">
+"Os modelos de linguagem tornaram-se mais capazes e amplamente implantados, mas não entendemos como eles funcionam."
+</blockquote>
+</div>
+
+Não é preocupante saber que os próprios criadores do ChatGPT não possuem um entendimento completo de seu funcionamento? Como controlar algo que em parte é ainda enigmático para seus criadores? Ao ler a frase acima no artigo da OpenAI, curiosamente, lembrei-me do filme “Alta Ansiedade”, dirigido e estrelado por Mel Brooks. Nesta comédia, Brooks interpreta um psiquiatra renomado, atormentado por um transtorno denominado de "alta ansiedade", que consiste em uma curiosa mistura de acrofobia e vertigem. A alta ansiedade aqui, no contexto da IA, é experimentar a interação com um sistema cujos próprios desenvolvedores não compreendem plenamente. Será que eventualmente nos tornaremos dependentes de um tipo de sistema que permanece em parte como um enigma? A sensação de ansiedade aqui é palpável! Não é?
+
+<center>
+<Imagem img='/blog/fora-de-controle/alta-ansiedade.gif' caption='Cena do filme Alta Ansiedade. Fonte Giphy'/>
+</center>
+<br />
+Sendo assim, enquanto tento controlar minha ansiedade por aqui, convido você a me acompanhar nesta leitura, onde busco explicar porque até mesmo os criadores do ChatGPT não compreendem totalmente como ele decide sobre os textos gerados.
+## O cérebro e o aprendizado de máquina
+O cérebro é um órgão notavelmente complexo e intrigante, desempenhando um papel central como o controlador do corpo humano, coordenando cada pensamento, ação e emoção que experimentamos. No centro de seu funcionamento encontra-se uma vasta rede de neurônios, os mensageiros essenciais que transmitem informações sob a forma de sinais elétricos e químicos. Cada neurônio é capaz de se conectar a milhares de outros, formando uma teia de conexões semelhante a uma densa teia de aranha. 
+<center>
+<Imagem img='/blog/fora-de-controle/neuronio.jfif' caption='Representação de um neurônio em atividade.'/>
+</center>
+<br />
+Quando estamos aprendendo, ocorrem mudanças importantes em nosso cérebro. Novas conexões entre os neurônios são formadas, enfraquecidas, fortalecidas ou desfeitas. Por exemplo, à medida que praticamos algo repetidamente, as conexões relacionadas a essa atividade específica ficam mais robustas. Conforme essas conexões se fortalecem, as mensagens são transmitidas com maior rapidez, tornando-as mais eficientes. Através dessa dinâmica, o cérebro se adapta e evolui por meio do aprendizado e das experiências.
+
+O funcionamento do cérebro serviu de inspiração para pesquisadores em IA desenvolverem um modelo de aprendizado de máquina chamado de rede neural artificial (RNA). As RNAs são modelos computacionais que buscam simular a nossa intrincada teia de neurônios.
+<center>
+<Imagem img='/blog/fora-de-controle/rna.jfif' caption='Representação dos neurônios no cérebro e em uma rede neural artificial (RNA).'/>
+</center>
+<br />
+É mais fácil compreender uma rede neural quando primeiro entendemos o funcionamento de nossos próprios neurônios. Portanto, vamos examinar alguns detalhes do sistema nervoso antes de explorarmos o funcionamento de uma RNA.
+## Memórias com vida própria
+<figure class="bg-primary bg-opacity-10 p-3 p-md-5 my-5">
+<blockquote class="blockquote">
+As memórias com vida própria, ao contrário, não ficam quietas dentro de uma caixa. São como pássaros em vôo. Vão para onde querem. E podemos chamá-las que elas não vêm. Só vêm quando querem. Moram em nós, mas não nos pertencem. O seu aparecimento é sempre uma surpresa. É que nem suspeitávamos que estivessem vivas! A gente vai calmamente andando pela rua e, de repente, um cheiro de pão. E nos lembramos da mãe assando pães na cozinha...
+</blockquote>
+<figcaption class="blockquote-footer"> 
+Sobre as memórias (fragmento) – Rubem Alves
+</figcaption>
+</figure>
+
+Temos em nosso corpo neurônios de diversos tipos e com diferentes funções. No caso do texto do saudoso Rubem Alves, a "lembrança da mãe" teve início nos neurônios olfativos. Quando as moléculas de odor entram pelas narinas, são detectadas pelos receptores presentes nestes neurônios. Isso desencadeia um grupo deles a emitir sinais elétricos para outros neurônios situados numa região conhecida como bulbo olfatório, os quais estabelecem comunicação com os neurônios do córtex olfatório. Continuando esta reação em cadeia, os neurônios do córtex olfatório enviam mensagens para diferentes regiões do cérebro. Essas mensagens não são transmitidas apenas para áreas vinculadas ao reconhecimento dos odores, estendendo-se também a regiões responsáveis pelo processamento de emoções. Por isso, um aroma pode evocar uma experiência sensorial complexa, trazendo à tona lembranças passadas, emoções ou reações corporais.
+<center>
+<Imagem img='/blog/fora-de-controle/sistema-olfativo.gif' caption='Diagrama esquemático – sistema olfativo.'/>
+</center>
+<br />
+O exemplo citado acima ilustra a complexa teia de conexões envolvidas no olfato e como os efeitos podem variar entre indivíduos. O “cheiro de pão”, por exemplo, pode desencadear diferentes respostas, como a lembrança da imagem de um pão, o despertar da vontade de saborear um pedaço, a recordação de que há a necessidade de comprar pães ou até mesmo memórias afetivas associadas. Tais reações estão inteiramente ligadas ao contexto, ao que aprendemos e experimentamos.
+# Meus neurônios surfam a onda da inspiração no mar da criatividade
+Vamos explorar outro exemplo antes de chegarmos à rede neural artificial. Imagine a situação: Ana Paula, uma personagem fictícia, está embarcando na jornada de aprender a surfar. Aos finais de semana, ela se dirige ao litoral para aprimorar suas habilidades no surfe. Devido à sua empolgação e determinação em progredir rapidamente, inicialmente ela se dirigia ao litoral toda semana, independentemente das condições climáticas, sob chuva ou sol.
+<center>
+<Imagem img='/blog/fora-de-controle/ana-paula-01.gif' caption='Ana Paula se dirigia ao litoral toda semana independentemente das condições climáticas.'/>
+</center>
+<br />
+Após alguns finais de semana de idas e vindas ao litoral, torna-se evidente a evolução do seu aprendizado. Agora, ela consegue se erguer na prancha e manter o equilíbrio por alguns breves segundos. Além disso, já percebeu que o tamanho das ondas tem um impacto em seu treinamento, portanto, em contraste com as primeiras vezes, antes de se dirigir à praia, verifica a previsão das condições do mar. Também se atenta à previsão do tempo, optando por dias ensolarados ou nublados e evitando aqueles que indicam chuva.
+<center>
+<Imagem img='/blog/fora-de-controle/ana-paula-02.gif' caption='Ana Paula sendo mais criteriosa em suas escolhas. Sua viagem ao litoral está sujeita às condições climáticas.'/>
+</center>
+<br />
+Uma rede neural artificial busca simular computacionalmente tanto o processo de aprendizado quanto a tomada de decisões humanas. Contudo, no lugar de sinais elétricos e químicos, ela utiliza algoritmos e fórmulas matemáticas.
+
+Para ilustrar, vamos construir um modelo de rede neural capaz de, assim como Ana Paula, avaliar se o dia é apropriado ou não para o seu treinamento de surfe. Acompanhe a explanação no tópico a seguir.
+## Da Biologia à Tecnologia
+Ana Paula baseia suas idas à praia em sua experiência acumulada. Para que nosso "cérebro digital" possa tomar decisões semelhantes às dela, utilizaremos o conhecimento que ela adquiriu como referência.
+
+Na tabela a seguir, apresentamos o racional que Ana Paula segue para tomar suas decisões.
+<center>
+<Imagem img='/blog/fora-de-controle/tabela-de-decisao.png' caption='Como Ana Paula decide suas idas à praia.'/>
+</center>
+<br />
+Por exemplo, caso a previsão seja de tempo nublado com ondas pequenas, a decisão é surfar. No entanto, se houver sol, mas as ondas estiverem muito grandes, nada de surfe.
+
+Agora que temos esses dados organizados, avançaremos para a construção e treinamento de nossa rede neural artificial. Vou construir a rede utilizando dois neurônios de entrada, outros dois para processamento e um para a saída. Na prática, poderia usar um número menor de neurônios, porém optei por uma quantidade maior a fim de tornar a explicação visual e não matemática.
+<center>
+<Imagem img='/blog/fora-de-controle/rna-surf.png' caption=''/>
+</center>
+<br />
+O processo de treinamento de uma rede neural ocorre principalmente por meio do método de tentativa e erro. A cada entrada, a rede neural procura um percurso que conduza à resposta correta. Em nosso exemplo, para o treinamento, consideramos "surfar" como a resposta correta e "não surfar" como incorreta.
+
+A animação a seguir representa visualmente esse processo de tentativa e erro. À medida que a rede neural acerta, o caminho percorrido vai ganhando mais “peso”, ilustrado na animação pela linha verde mais espessa. Por outro lado, o trajeto que leva ao erro, representado pela linha vermelha, perde “peso”. 
+<center>
+<Imagem img='/blog/fora-de-controle/rna-surf-treinando.gif' caption=''/>
+</center>
+<br />
+Agora que nossa rede está treinada, iremos examinar o funcionamento dela por meio de testes. A animação a seguir demonstra o resultado quando é informado a condição de “Sol” e “Ondas pequenas”. A consulta a rede neural traz como resultado: "SURFE".
+<center>
+<Imagem img='/blog/fora-de-controle/rna-surf-inferencia01.gif' caption='Sol e ondas pequenas: SURFE.'/>
+</center>
+<br />
+Outro teste. Temos Sol, mas não temos Ondas. Resultado: não é dia de surfe. Observe que, nesse cenário, o "neurônio" associado ao surfe não é ativado, uma vez que ele necessita receber dois sinais para ser ativado.
+<center>
+<Imagem img='/blog/fora-de-controle/rna-surf-inferencia02.gif' caption='Sol e mar sem ondas: não é dia de surfe.'/>
+</center>
+<br />
+## Alta ansiedade: por que uma IA fora do controle?
+Despois de tanto texto, é compreensível que o objetivo principal deste artigo possa ter escapado da memória, que é elucidar um dos fundamentos que sustenta as previsões alarmantes sobre o avanço da IA: a falta de clareza e transparência no funcionamento dos sistemas baseados em "aprendizado profundo".
+Nossa rede neural de surfe apresenta uma estrutura modesta, com apenas oito conexões e dois neurônios na camada central. Ela não se enquadra nos parâmetros das redes de aprendizado profundo, conhecidas como *deep learning*. Na prática, muito dos sistemas de IA que interagimos hoje em dia, como os assistentes pessoais, detectores de spam, compras online e sistemas de reconhecimento facial, são baseados em deep learning. Ou seja, foram construídos usando uma rede neural com um número muito maior de neurônios e uma ampla rede de conexões. Tomemos o caso do ChatGPT, mencionado no início deste texto. Embora a quantidade exata de neurônios usados em sua construção não seja divulgada, sabe-se que a rede neural subjacente contém mais de 175 bilhões de conexões. Nossa rede para previsão de surf possui apenas oito conexões, enquanto o ChatGPT conta com mais de 175 bilhões!
+Ao nos depararmos com uma rede neural com bilhões de conexões, surgem questionamentos inevitáveis: como analisar uma rede de tal magnitude? Como entender cada elo? E, de forma ainda mais fundamental, como garantir que ela produza a resposta planejada?
+
+É justamente por essa razão que está ganhando força a corrente de pensamento que argumenta que o futuro da IA deve priorizar o desenvolvimento da capacidade de compreender os resultados do processo de treinamento de uma rede neural profunda. Continuar a progredir no campo da IA baseada em redes neurais sem adquirir a capacidade de analisá-la e controlá-la pode representar um risco significativo.
+
+Um exemplo dessa abordagem encontra-se no paper que citamos no início deste texto. A proposta apresentada sugere a utilização do próprio modelo do ChatGPT como base para automatizar o processo de análise dos seus bilhões de conexões. Esta abordagem viabilizaria uma auditoria abrangente da segurança dos sistemas de IA projetados para entender e gerar a linguagem humana. Contudo, é importante notar que o trabalho apresentado no paper contempla apenas os modelos de IA baseados em linguagem e não oferece uma solução definitiva para o desafio da validação dos sistemas de aprendizado profundo. 
+
+E pensando em controlar minha "Alta Ansiedade", torço para que a próxima fase da evolução da IA trilhe este caminho da clareza e transparência.
+<Parau />

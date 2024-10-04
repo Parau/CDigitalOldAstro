@@ -2,5 +2,7 @@
 // Props can be defined here
 const { img, caption } = Astro.props;
 ---
-<img src={import.meta.env.BASE_URL+img} alt="Alt text" title="A title" />
+<!--<img src={import.meta.env.BASE_URL+img} alt="Alt text" title="A title" />
+ -->
+ <img src={img} alt="Alt text" title="A title" />
 <figcaption class="figure-caption text-center mt-2">{caption}</figcaption>

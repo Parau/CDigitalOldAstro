@@ -28,7 +28,7 @@ const posts = (await getCollection('blog')).sort(
 									<div class="card mb-4">
 										<!-- Card img -->
 										<div class="card-fold position-relative">
-											<img class="card-img" src={'./'+post.data.heroImage} alt="Card image">
+											<img class="card-img" src={post.data.heroImage} alt="Card image">
 										</div>
 										<div class="card-body px-0 pt-3">
 											<h4 class="card-title"><a href={`./blog/${post.slug}/`} class="btn-link text-reset stretched-link fw-bold">{post.data.title}</a></h4>
