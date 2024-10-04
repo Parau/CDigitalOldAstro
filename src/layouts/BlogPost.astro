@@ -7,7 +7,29 @@ import FormattedDate from '../components/FormattedDate.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, author, updatedDate, heroImage } = Astro.props;
+const { title, description, pubDate, author, updatedDate, heroImage, tags } = Astro.props;
+
+const formatClasses = {
+    'IA': 'badge text-bg-danger mb-2',
+    'Educação': 'badge text-bg-danger mb-2',
+};
+function getKeyIndex(key: string): number {
+  // Convert the keys of the formatClasses object into an array
+  const keysArray = Object.keys(formatClasses);
+  
+  // Use indexOf to find the index of the key
+  const index = keysArray.indexOf(key);
+
+  // Return the index or -1 if the key is not found
+  return index !== -1 ? index : -1;
+}
+function getValueByIndex(index: number): string | undefined {
+  // Convert the values of the formatClasses object into an array
+  const valuesArray = Object.values(formatClasses);
+  
+  // Return the value at the given index or undefined if the index is out of range
+  return valuesArray[index];
+}
 ---
 
 <html lang="pt">
@@ -23,9 +45,23 @@ const { title, description, pubDate, author, updatedDate, heroImage } = Astro.pr
 			Inner intro START -->
 			<section>
 				<div class="container">
+
 					<div class="row">
 						<div class="col-lg-9 mx-auto pt-md-5">
-							<a href="#" class="badge text-bg-danger mb-2"><i class="fas fa-circle me-2 small fw-bold"></i>Travel</a>
+
+							{tags && tags.length > 0 && (
+								<div>
+										{tags.map((tag) => {
+												return (
+												<span class={getValueByIndex(0)}>
+													<i class="fas fa-circle me-2 small fw-bold"></i>  {tag} {/* Return the tag name directly here */}
+												</span>
+												);
+										})}
+								</div>
+							)}
+
+							
 							<h1 class="display-4">{title}</h1>
 							<p class="lead">{description}</p>
 							<!-- Info -->
