@@ -1,0 +1,31 @@
+---
+// Props can be defined here
+//const { img, caption } = Astro.props;
+---
+<div id="autor" class="d-flex p-2 p-md-4 mt-5 border rounded">
+  <!-- Avatar -->
+  <a href="https://www.linkedin.com/in/parau/">
+    <div class="avatar avatar-xxl me-2 me-md-4">
+      <img class="avatar-img rounded-circle" src={import.meta.env.BASE_URL+'/public/blog/Parahuari-Parau.jfif'} alt="avatar">
+    </div>
+  </a>
+  <!-- Info -->
+  <div>
+    <div class="d-sm-flex align-items-center justify-content-between">
+      <div>
+        <h4 class="m-0"><a href="#">Parahuari Branco (Parau)</a></h4>
+        <small>Educação, Tecnologia e Inovação</small>
+      </div>
+    </div>
+    <p class="my-2">Louis Ferguson is a senior editor for the blogzine and also reports on breaking news based in London. He has written about government, criminal justice, and the role of money in politics since 2015.</p>
+    <!-- Social icons -->
+    <ul class="nav">
+      <li class="nav-item">
+        <a class="nav-link px-2 fs-5" href="https://twitter.com/Parau"><i class="fab fa-twitter-square"></i></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link px-2 fs-5" href="https://www.linkedin.com/in/parau/"><i class="fab fa-linkedin"></i></a>
+      </li>
+    </ul>					
+  </div>
+</div>
