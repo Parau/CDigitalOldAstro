@@ -18,6 +18,21 @@ const posts = (await getCollection('blog')).sort(
 	<body>
 		<Header />
 		<main>
+			<!-- =======================
+			Trending START -->
+			<section class="py-2">
+				<div class="container">
+					<div class="row g-0">
+						<div class="col-12 bg-primary bg-opacity-10 p-2 rounded">
+							<div class="d-sm-flex align-items-center text-center text-sm-start">
+							</div>
+							Tecnologias digitais que transformam criatividade em inovação.
+						</div> 
+					</div> <!-- Row END -->
+				</div>
+			</section>
+			<!-- =======================
+			Trending END -->
 			<section class="position-relative pt-0">
 				<div class="container">
 					<div class="row"> 
@@ -47,6 +62,54 @@ const posts = (await getCollection('blog')).sort(
 						))}
 					</div>
 				</div>
+
+
+				<div class="container">
+					<div class="row">
+						<div class="col-12">
+							<!-- Chart START -->
+								<!-- Card body -->
+								<div class="card-body">
+										<!-- Main form -->
+										<div class="row">
+											<!-- Post type START -->
+											<div class="col-12">
+												<div class="mb-3">
+													<div class="d-flex flex-wrap gap-3">
+														<!-- Post type item -->
+														<div class="flex-fill">
+															<label class="btn btn-outline-light w-100" for="option">
+																<a href="https://criatividade.digital/CCriativas" target="_blank">
+																	<i class="fas fa-paint-brush me-2 fs-2 "></i> 
+																	<span class="d-block"> Construções<br />Criativas </span>
+																</a>
+															</label>
+														</div>
+														<!-- Post type item -->
+														<div class="flex-fill">
+															<label class="btn btn-outline-light w-100" for="option2">
+																<a href="https://alfabetizar.aprender.digital/" target="_blank">
+																	<i class="fas fa-book-reader me-2 fs-2"></i>
+																	<span class="d-block"> Alfabetização </span>
+																</a>
+															</label>
+														</div>
+														<!-- Post type item -->
+												</div>
+											</div>
+										</div>
+										<!-- Post type END -->
+								</div>
+							<!-- Chart END -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+
+
+
 			</section>
 		</main>
 		<Footer />
