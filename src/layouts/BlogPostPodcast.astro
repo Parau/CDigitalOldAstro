@@ -1,0 +1,105 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+
+type Props = CollectionEntry<'blog'>['data'];
+
+const { title, description, pubDate, duration, author, updatedDate, heroImage, tags } = Astro.props;
+
+const formatClasses = {
+    'IA': 'badge text-bg-danger mb-2',
+    'Educação': 'badge text-bg-danger mb-2',
+};
+function getValueByIndex(index: number): string | undefined {
+  // Convert the values of the formatClasses object into an array
+  const valuesArray = Object.values(formatClasses);
+  
+  // Return the value at the given index or undefined if the index is out of range
+  return valuesArray[index];
+}
+---
+
+<html lang="pt">
+	<head>
+		<BaseHead title={title} description={description} />
+		<link rel="stylesheet" type="text/css" href="/css/plyr/plyr.css" />
+	</head>
+
+	<body>
+		<Header />
+		<main>
+
+			<!-- =======================
+			Inner intro START -->
+			<section>
+				<div class="container">
+
+					<div class="row">
+						<div class="col-lg-9 mx-auto pt-md-5">
+
+							{tags && tags.length > 0 && (
+								<div>
+										{tags.map((tag) => {
+												return (
+												<span class={getValueByIndex(0)}>
+													<i class="fas fa-circle me-2 small fw-bold"></i>  {tag} {/* Return the tag name directly here */}
+												</span>
+												);
+										})}
+								</div>
+							)}
+
+							
+							<h1 class="display-4">{title}</h1>
+							<p class="lead">{description}</p>
+							<!-- Info -->
+							<ul class="nav nav-divider align-items-center">
+								<li class="nav-item">
+									<div class="nav-link">
+										<a href="" onclick="document.getElementById('autor').scrollIntoView({ behavior: 'smooth' }); return false"  class="text-reset btn-link">Podcast</a>
+									</div>
+								</li>
+								<li class="nav-item"><FormattedDate date={pubDate} /></li>
+								{
+									updatedDate && (
+										<li class="nav-item">
+											(<FormattedDate date={updatedDate} />)
+										</li>
+									)
+								}
+							</ul>
+							<span> <i class="fas fa-clock me-2"></i>{duration}</span>
+							<img class="rounded mt-5" src={heroImage} alt="Image">
+						</div>
+						
+					</div>
+				</div>
+			</section>
+			<!-- =======================
+			Inner intro END -->
+
+
+			<!-- =======================
+			Main START -->
+			<section class="pt-0">
+				<div class="container position-relative">
+					<div class="row">
+						<!-- Main Content START -->
+						<div class="col-lg-9 mx-auto">
+							<slot />
+
+						</div>
+						<!-- Main Content END -->
+					</div>
+				</div>
+			</section>
+			<!-- =======================
+			Main END -->
+		</main>
+		<Footer />
+		<script is:inline src="/css/plyr/plyr.js"></script>
+	</body>
+</html>

@@ -8,6 +8,8 @@ const blog = defineCollection({
 		description: z.string(),
 		// Transform string to Date object
 		pubDate: z.coerce.date(),
+		type: z.string().default('text'),
+		duration: z.string().optional(),
 		author: z.string(),
 		updatedDate: z.coerce.date().optional(),
 		heroImage: z.string().optional(),
@@ -15,4 +17,4 @@ const blog = defineCollection({
 	}),
 });
 
-export const collections = { blog };
+export const collections = { 'blog': blog };
