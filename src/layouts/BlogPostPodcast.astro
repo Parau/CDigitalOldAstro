@@ -7,7 +7,8 @@ import FormattedDate from '../components/FormattedDate.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, duration, author, updatedDate, heroImage, tags } = Astro.props;
+const { title, description, pubDate, duration, author, updatedDate, heroImage, socialImage, tags } = Astro.props;
+
 
 const formatClasses = {
     'IA': 'badge text-bg-danger mb-2',
@@ -24,7 +25,7 @@ function getValueByIndex(index: number): string | undefined {
 
 <html lang="pt">
 	<head>
-		<BaseHead title={title} description={description} image = {heroImage} />
+		<BaseHead title={title} description={description} image = {socialImage ?? heroImage} />
 		<link rel="stylesheet" type="text/css" href="/css/plyr/plyr.css" />
 	</head>
 
