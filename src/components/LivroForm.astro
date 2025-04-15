@@ -1,0 +1,81 @@
+---
+// Component for generating the personalized book "O Nome da Gente"
+---
+
+<div class="bd-example" style="font-family:'Segoe UI', 'Helvetica Neue', 'Arial'">
+  <form id="formLivro" name="formLivro" target="_blank" class="needs-validation" novalidate action="https://livros.aprender.digital/ONomeDaGente.html#book/page/1" method="GET">
+    <div class="form-group">
+      <label for="nome">
+        <b>Nome criança</b>
+      </label>
+      <input type="text" class="form-control form-control-lg" placeholder="Digite aqui o nome da criança" maxlength="15" required id="formNome" name="nome" onkeyup="DefineNome(this)">
+      <div class="invalid-feedback">
+          🙄 Escreva aqui o nome da criança que vai receber o livro.
+      </div>
+      <small id="nomeHelp" class="form-text text-muted">
+        Aqui você você escreve o nome da criança que vai receber o livro. 
+        Use no m&aacute;ximo 15 letras.
+        Sugerimos usar o nome sem o sobrenome. Por exemplo: Julia, Ana Cl&aacute;udia, Felipe.
+      </small>
+    </div>
+    <div class="form-group">
+      <label for="frase"><b>Como devemos apresentar a criança no livro?</b></label>
+      <br />
+      <label for="frase">Escolha a frase que melhor se encaixa:</label>
+      <div class="custom-control custom-radio form-control-lg" style="display: flex; align-items: center; margin-top: -5px;">
+        <input type="radio" class="custom-control-input" id="dele" name="deleDela" value="dele" required style="margin-right: 8px;" >
+        <label id="deleLabel" class="custom-control-label" for="dele" style="cursor: pointer; margin: 0;">
+          O nome <b>dele</b> é...</label>
+      </div>
+      <div class="custom-control custom-radio form-control-lg" style="display: flex; align-items: center; margin-top: -18px;">
+        <input type="radio" class="custom-control-input" id="dela" name="deleDela" value="dela" required style="margin-right: 8px;">
+        <label id="delaLabel" class="custom-control-label" for="dela" style="cursor: pointer; margin: 0;">
+          O nome <b>dela</b> é...</label>
+          <div class="invalid-feedback">
+            👆 Não deixe de escolher uma das frases acima.
+          </div>
+      </div>
+    </div>
+    <button name="enviar" style="display: none;" type="submit"></button>
+    <button id="botaoGerarLivro" type="button" onclick="callGerar()" class="heart btn btn-success btn-block mt-2">Clique aqui para <b>GERAR O LIVRO</b></button>
+  </form>
+</div>
+
+<script is:inline>
+  function DefineNome(input) {
+      document.getElementById("deleLabel").innerHTML = "O nome <b>dele</b> é " + input.value + ".";
+      document.getElementById("delaLabel").innerHTML = "O nome <b>dela</b> é " + input.value + ".";
+  }
+  (function() {
+    'use strict';
+    window.addEventListener('load', function() {
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.getElementsByClassName('needs-validation');
+      // Loop over them and prevent submission
+      var validation = Array.prototype.filter.call(forms, function(form) {
+        form.addEventListener('submit', function(event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add('was-validated');
+        }, false);
+      });
+    }, false);
+  })();
+
+  function callGerar() {
+   if (document.formLivro.checkValidity()) {
+     document.getElementById("botaoGerarLivro").disabled = true;
+     document.getElementById("botaoGerarLivro").innerHTML = 'Gerando o livro... <img class="center" src="/blog/dnli/loading03.gif" width="40" height="40" style="vertical-align: middle;"> Uma nova janela será aberta!';
+     setTimeout(callSubmit, 4000);
+   } else {
+     document.formLivro.enviar.click();
+   }
+  }
+  function callSubmit() {
+     document.getElementById("botaoGerarLivro").disabled = false;
+     document.getElementById("botaoGerarLivro").innerHTML = 'Clique aqui para <b>GERAR O LIVRO</b>';
+    document.formLivro.enviar.click();
+  }
+</script>
