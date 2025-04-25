@@ -1,0 +1,24 @@
+---
+---
+
+<script is:inline>
+  function getEmailFromUrl() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const emailParam = urlParams.get('e');
+    return emailParam;
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const email = getEmailFromUrl();
+    if (email) {
+      //console.log('Email capturado da URL:', email);
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbz9dNgljN2Aqe7dRulxwLUjQiKIKP8k6IWcpYFLP0OWihwNT67S0gS1KojlYI8cB-gi/exec';
+      
+     
+      // Enviar os dados para o Google Apps Script
+      fetch(`${scriptURL}?data=${encodeURIComponent(email)}`, { method: 'GET', mode: 'no-cors' })
+        .then(response => console.log('registrado parametro da pagina!', response))
+        .catch(error => console.error('Erro no registro do parametro da pagina!', error.message));
+    }
+  });
+</script>
