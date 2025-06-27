@@ -8,7 +8,7 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
 	site: 'http://criatividade.digital',
-	//base: '/super-apague',
+	//base: '/blog',
 	integrations: [mdx(), sitemap(), react()],
 	markdown: {
     // Opções para o processador de Markdown (ex: remark)
